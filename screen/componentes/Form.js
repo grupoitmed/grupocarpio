@@ -1,11 +1,11 @@
 import React from 'react';
 import t from 'tcomb-form-native';
 const Form = t.form.Form;
-import Inout from '../component/Inputs'
+import Inout from './Inputs'
 
 export const LoginStruct = t.struct({
     user: t.String,
-    password: t.String
+    password: t.String,
 });
 
 export const LoginOptions = {
@@ -18,6 +18,9 @@ export const LoginOptions = {
                 secureTextEntry:false,
                 iconType:"font-awesome",
                 iconName:"user",
+                styles:{
+                    width:'45%',
+                },
             }
         },
         password:{
@@ -27,7 +30,10 @@ export const LoginOptions = {
                 secureTextEntry:true,
                 password:true,
                 iconType:"font-awesome",
-                iconName:"lock"
+                iconName:"lock",
+                styles:{
+                    width:'45%',
+                },
             }
         }
     }
