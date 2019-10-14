@@ -10,6 +10,7 @@ export const LoginStruct = t.struct({
     conocido: t.maybe(t.String),
     nacionalidad: t.String,
     fecha_nacimiento: t.String,
+    sexo: t.String,
     estado_civil: t.String, //select
     tipo_documento: t.String, //select
     num_documento: t.String,
@@ -48,8 +49,33 @@ export const LoginOptions = {
         conocido:{template:Inout, config:{ placeholder:"Lo comonoce por?", secureTextEntry:false, password:false} },
         nacionalidad:{template:Inout, config:{ placeholder:"Ingrese su nacionalidad", secureTextEntry:false, password:false} },
         fecha_nacimiento:{template:Inout, config:{ placeholder:"Ingrese su fecha de nacimiento", secureTextEntry:false, password:false } },
-        estado_civil:{ template:Estado_civil },
-        tipo_documento:{template:Inout, config:{ placeholder:"----------------------", secureTextEntry:false, password:false} },
+        estado_civil:{ template:Estado_civil, config:{
+                itemss:[
+                    { label: 'SOLTERO/A', value: 'SOLTERO/A' },
+                    { label: 'CASADO/A', value: 'CASADO/A' },
+                    { label: 'ACOMPAÑADO/A', value: 'ACOMPAÑADO/A' },
+                    { label: 'DIVORCIADO/A', value: 'DIVORCIADO/A' },
+                ]
+            }
+        },
+        sexo:{ template:Estado_civil, config:{
+                itemss:[
+                    { label: 'MASCULINO', value: 'M' },
+                    { label: 'FEMENINO', value: 'F' },
+                    { label: 'TRANSGENERO', value: 'T' },
+                ]
+            }
+        },
+        tipo_documento:{template:Estado_civil, 
+            config:{
+                itemss:[
+                    { label: 'DUI', value: '1' },
+                    { label: 'NIT', value: '2' },
+                    { label: 'PASAPORTE', value: '3' },
+                    { label: 'OTROS', value: '4' },
+                ]
+            } 
+        },
         num_documento:{template:Inout, config:{ placeholder:"Ingrese su numero de documento", secureTextEntry:false, password:false} },
         direccion_domicilio:{template:Inout, config:{ placeholder:"Ingrese su direccion domiciliar", secureTextEntry:false, password:false} },
         telfono_celular:{template:Inout, config:{ placeholder:"Ingrese su telefono celular", secureTextEntry:false, password:false} },
@@ -72,7 +98,14 @@ export const LoginOptions = {
         referido_por:{template:Inout, config:{ placeholder:"Ingrese de quien viene referido", secureTextEntry:false, password:false} },
         medico_cabecera:{template:Inout, config:{ placeholder:"Ingrese su medico de cabecera", secureTextEntry:false, password:false} },
         reg_iva:{template:Inout, config:{ placeholder:"Ingrese registro de IVA", secureTextEntry:false, password:false} },
-        seguro_medico:{template:Inout, config:{ placeholder:"-----------", secureTextEntry:false, password:false} },
+        seguro_medico:{template:Estado_civil, 
+            config:{
+                itemss:[
+                    { label: 'SI', value: '1' },
+                    { label: 'NO', value: '2' },
+                ]
+            } 
+        },
         aseguradora:{template:Inout, config:{ placeholder:"Ingrese la aseguradora", secureTextEntry:false, password:false} },
         nu_polisa:{template:Inout, config:{ placeholder:"Ingrese numero de polisa", secureTextEntry:false, password:false} },
         nu_certificado:{template:Inout, config:{ placeholder:"Ingrese numero certificado", secureTextEntry:false, password:false} },
