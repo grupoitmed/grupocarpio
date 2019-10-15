@@ -25,6 +25,9 @@ export default class Formulario extends React.Component  {
         correo_electronico: "",
         telefono_domiciliar: "",
         telefono_trabajo: "",
+        lugar_trabajo: "",
+        conyugue: "",
+        telefono_conyugue: "",
         profecion: "", //select
         medicamentio_que_utiliza: "", 
         alergias: "", 
@@ -44,6 +47,7 @@ export default class Formulario extends React.Component  {
         seguro_medico: "", // select si || no 
         aseguradora: "",
         nu_polisa: "",
+        nu_carnet: "",
         nu_certificado: "",
         titular_seguro: ""
       }
@@ -65,6 +69,9 @@ export default class Formulario extends React.Component  {
       correo_electronico: "",
       telefono_domiciliar: "",
       telefono_trabajo: "",
+      lugar_trabajo: "",
+      conyugue: "",
+      telefono_conyugue: "",
       profecion: "", //select
       medicamentio_que_utiliza: "", 
       alergias: "", 
@@ -84,6 +91,7 @@ export default class Formulario extends React.Component  {
       seguro_medico: "", // select si || no 
       aseguradora: "",
       nu_polisa: "",
+      nu_carnet: "",
       nu_certificado: "",
       titular_seguro: ""
     }});
@@ -114,24 +122,56 @@ export default class Formulario extends React.Component  {
     );
   }
   toass = ()=>{
-    Alert.alert(
-      'Guardar Datos',
-      '¿Esta seguro?',
-      [
-        {
-          text: 'No',
-          style: 'cancel',
-          onPress: () => {
-            console.log('No cancelado')
+    var arrays=this.state.value;
+    console.log(arrays.nombre);
+    if(arrays.nombre==''){
+      Alert.alert(
+        'Ooops',
+        'El nombre es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.apellido==''){
+      Alert.alert(
+        'Ooops',
+        'El apellido es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.sexo==''){
+      Alert.alert(
+        'Ooops',
+        'El sexo es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.fecha_nacimiento==''){
+      Alert.alert(
+        'Ooops',
+        'LA fecha de nacimiento es requerida.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else{
+      Alert.alert(
+        'Guardar Datos',
+        '¿Esta seguro?',
+        [
+          {
+            text: 'No',
+            style: 'cancel',
+            onPress: () => {
+              console.log('No cancelado')
+            },
           },
-        },
-        {text: 'Si', onPress: () =>{
-          this.sendDatas();
-          }
-        },
-      ],
-      {cancelable: false},
-    );
+          {text: 'Si', onPress: () =>{
+            this.sendDatas();
+            }
+          },
+        ],
+        {cancelable: false},
+      );
+    }
   }
   sendDatas =() =>{
     var arrays=this.state.value;
@@ -149,9 +189,12 @@ export default class Formulario extends React.Component  {
     dataSend.append('telfono_celular', arrays.telfono_celular);
     dataSend.append('correo_electronico', arrays.correo_electronico);
     dataSend.append('telefono_domiciliar', arrays.telefono_domiciliar);
+    dataSend.append('lugar_trabajo', arrays.lugar_trabajo);
+    dataSend.append('conyugue', arrays.conyugue);
+    dataSend.append('telefono_conyugue', arrays.telefono_conyugue);
     dataSend.append('telefono_trabajo', arrays.telefono_trabajo);
     dataSend.append('profecion', arrays.profecion); //select
-    dataSend.append('memedicamentio_que_utiliza', arrays.memedicamentio_que_utiliza); 
+    dataSend.append('medicamentio_que_utiliza', arrays.medicamentio_que_utiliza); 
     dataSend.append('alergias', arrays.alergias); 
     dataSend.append('enfermedades_actuales', arrays.enfermedades_actuales); 
     dataSend.append('nombre_padre', arrays.nombre_padre); 
@@ -169,14 +212,16 @@ export default class Formulario extends React.Component  {
     dataSend.append('seguro_medico', arrays.seguro_medico); // select si || no 
     dataSend.append('aseguradora', arrays.aseguradora);
     dataSend.append('nu_polisa', arrays.nu_polisa);
+    dataSend.append('nu_carnet', arrays.nu_carnet); 
     dataSend.append('nu_certificado', arrays.nu_certificado);
-    dataSend.append('titular_seguro', arrays.titular_seguro);
+    dataSend.append('titular_seguro', arrays.titular_seguro); 
     fetch('http://medicpro.cloud/grupocarpio/API/show_datos', {
     method: 'POST',
     body: dataSend,
   })
       //.then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson.status);
         if(responseJson.status){
           Alert.alert(
             'Excelente',
@@ -212,6 +257,7 @@ export default class Formulario extends React.Component  {
           <ScrollView style={styles.container}>    
             <View  style={styles.containerview}>
                 <Text h4 >Registrar Paciente</Text>
+                <Text style={styles.text}>Los campos con el (*) son requeridos, los demas son opcionales</Text>
                   <Form 
                     ref="inputs"
                     type={ LoginStruct }
@@ -232,6 +278,9 @@ const styles = StyleSheet.create({
     width:'90%',
     marginLeft:'5%',
     top:50,
+  },
+  text:{
+    color:"red",
   },
   containerview:{
     marginBottom:500

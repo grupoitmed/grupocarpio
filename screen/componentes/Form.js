@@ -19,6 +19,9 @@ export const LoginStruct = t.struct({
     correo_electronico: t.maybe(t.String),
     telefono_domiciliar: t.maybe(t.String),
     telefono_trabajo: t.maybe(t.String),
+    lugar_trabajo: t.maybe(t.String),
+    conyugue: t.maybe(t.String),
+    telefono_conyugue: t.maybe(t.String),
     profecion: t.maybe(t.String), //select
     medicamentio_que_utiliza: t.maybe(t.String), 
     alergias: t.maybe(t.String), 
@@ -38,17 +41,18 @@ export const LoginStruct = t.struct({
     seguro_medico: t.maybe(t.String), // select si || no 
     aseguradora: t.maybe(t.String),
     nu_polisa: t.maybe(t.String),
+    nu_carnet: t.maybe(t.String),
     nu_certificado:t.maybe( t.String),
     titular_seguro: t.maybe(t.String),
 });
 
 export const LoginOptions = {
     fields: {
-        nombre:  {template:Inout, config:{ placeholder:"Ingrese su nombre", label:"Nombre", password:false, secureTextEntry:false } },
-        apellido:{template:Inout, config:{ placeholder:"Ingrese su apellido",label:"Apellido", secureTextEntry:false, password:false} },
-        conocido:{template:Inout, config:{ placeholder:"Lo comonoce por?",label:"Lo comonoce por?", secureTextEntry:false, password:false} },
+        nombre:  {template:Inout, config:{ placeholder:"Ingrese su nombre", label:"Nombre :*", password:false, secureTextEntry:false } },
+        apellido:{template:Inout, config:{ placeholder:"Ingrese su apellido",label:"Apellido :*", secureTextEntry:false, password:false} },
+        conocido:{template:Inout, config:{ placeholder:"Lo comonoce por?",label:"Lo comonoce por :", secureTextEntry:false, password:false} },
         nacionalidad:{template:Inout, config:{ placeholder:"Ingrese su nacionalidad",label:"Nacionalidad", secureTextEntry:false, password:false} },
-        fecha_nacimiento:{template:Inout, config:{ placeholder:"Ingrese su fecha de nacimiento", label:"Fecha de nacimiento",secureTextEntry:false, password:false } },
+        fecha_nacimiento:{template:Inout, config:{ placeholder:"Ejemplo: 21-05-1998", label:"Fecha de nacimiento :*",secureTextEntry:false, password:false } },
         estado_civil:{ template:Selects, config:{
                 label:"Estado civil:",
                 itemss:[
@@ -57,7 +61,7 @@ export const LoginOptions = {
             }
         },
         sexo:{ template:Selects, config:{
-                label:"Sexo:",
+                label:"Sexo:*",
                 itemss:[
                     { label: 'MASCULINO', value: 'M' }, { label: 'FEMENINO', value: 'F' }, { label: 'TRANSGENERO', value: 'T' },
                 ]
@@ -77,6 +81,11 @@ export const LoginOptions = {
         correo_electronico:{template:Inout, config:{ placeholder:"Ingrese su correo electronico",label:"Correo electronico:", secureTextEntry:false, password:false} },
         telefono_domiciliar:{template:Inout, config:{ placeholder:"Ingrese su telefono domiciliar", label:"Teléfono domiciliar:",secureTextEntry:false, password:false} },
         telefono_trabajo:{template:Inout, config:{ placeholder:"Ingrese su telefono de trabao", label:"Teléfono de trabajo",secureTextEntry:false, password:false} },
+        
+        lugar_trabajo:{template:Inout, config:{ placeholder:"Ingrese lugar de trabajo", label:"Lugar de trabajo",secureTextEntry:false, password:false} },
+        conyugue:{template:Inout, config:{ placeholder:"Ingrese el nombre de su cónyuge", label:"Cónyuge",secureTextEntry:false, password:false} },
+        telefono_conyugue:{template:Inout, config:{ placeholder:"Ingrese el telefono del cónyuge", label:"Teléfono del cónyuge",secureTextEntry:false, password:false} },
+        
         profecion:{template:Selects, 
             config:{
                 label:"Profesión:",
@@ -87,7 +96,7 @@ export const LoginOptions = {
         },
         medicamentio_que_utiliza:{template:Inout, config:{ placeholder:"Ingrese medicamento que utiliza",label:"Medicamentos que utiliza:", secureTextEntry:false, password:false} },
         alergias:{template:Inout, config:{ placeholder:"Ingrese sus alergias",label:"Alergias:", secureTextEntry:false, password:false} },
-        enfermedades_actuales:{template:Inout, config:{ placeholder:"Ingrese enfermedades actuales",label:"Medicamentos que Enfermedades Actuales:", secureTextEntry:false, password:false} },
+        enfermedades_actuales:{template:Inout, config:{ placeholder:"Ingrese enfermedades actuales",label:"Enfermedades Actuales:", secureTextEntry:false, password:false} },
         nombre_padre:{template:Inout, config:{ placeholder:"Ingrese el nombre de su padre",label:"Padre:", secureTextEntry:false, password:false} },
         telefono_padre:{template:Inout, config:{ placeholder:"Ingrese el telefono de su padre",label:"Teléfono del padre:", secureTextEntry:false, password:false} },
         ocupacion_padre:{template:Inout, config:{ placeholder:"Ingrese la ocupaciones de su padre",label:"Ocupacion del Padre:", secureTextEntry:false, password:false} },
@@ -112,6 +121,7 @@ export const LoginOptions = {
         aseguradora:{template:Inout, config:{ placeholder:"Ingrese la aseguradora",label:"Aseguradora:", secureTextEntry:false, password:false} },
         nu_polisa:{template:Inout, config:{ placeholder:"Ingrese numero de polisa", label:"Número de póliza:",secureTextEntry:false, password:false} },
         nu_certificado:{template:Inout, config:{ placeholder:"Ingrese numero certificado",label:"Número de certificado:", secureTextEntry:false, password:false} },
+        nu_carnet:{template:Inout, config:{ placeholder:"Ingrese numero de carnet",label:"Número de carnet:", secureTextEntry:false, password:false} },
         titular_seguro:{template:Inout, config:{ placeholder:"Ingrese titular del seguro",label:"Titular del seguro:", secureTextEntry:false, password:false} }
     }
 };
