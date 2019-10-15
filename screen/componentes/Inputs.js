@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, View,Text } from 'react-native';
-import { Icon } from 'react-native-vector-icons/FontAwesome';
-import { Input } from 'react-native-elements';
+import { StyleSheet, View } from 'react-native';
+import { Input,Text } from 'react-native-elements';
 
 export default (inputTemplates=local=>{
     return (
         <View style={styles.View}>
-            <Text>{ local.config.label }</Text>
+            <Text h4 h4Style={styles.text} >{ local.config.label }</Text>
             <Input 
                 ref={ local.ref }
                 placeholder={local.config.placeholder} 
@@ -14,6 +13,7 @@ export default (inputTemplates=local=>{
                 secureTextEntry={local.config.secureTextEntry}
                 value={ local.value }
                 onChangeText={v => local.onChange(v)}
+                inputStyle={styles.input}
             />
         </View>
     )
@@ -22,5 +22,11 @@ export default (inputTemplates=local=>{
 const styles = StyleSheet.create({
     View:{
         marginBottom:40
+    },
+    text:{
+        color:"#FFF"
+    },
+    input:{
+        color: '#FFF'
     }
 });

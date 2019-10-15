@@ -15,7 +15,9 @@ export default class Formulario extends React.Component  {
         apellido: "",
         conocido: "",
         nacionalidad: "",
-        fecha_nacimiento: "",
+        fecha_nacimiento_dia: "",
+        fecha_nacimiento_mes: "",
+        fecha_nacimiento_anio: "",
         sexo: "", //select
         estado_civil: "", //select
         tipo_documento: "", //select
@@ -59,7 +61,9 @@ export default class Formulario extends React.Component  {
       apellido: "",
       conocido: "",
       nacionalidad: "",
-      fecha_nacimiento: "",
+      fecha_nacimiento_dia: "",
+      fecha_nacimiento_mes: "",
+      fecha_nacimiento_anio: "",
       sexo: "", //select
       estado_civil: "", //select
       tipo_documento: "", //select
@@ -180,7 +184,7 @@ export default class Formulario extends React.Component  {
     dataSend.append('apellido', arrays.apellido);
     dataSend.append('conocido', arrays.conocido);
     dataSend.append('nacionalidad', arrays.nacionalidad);
-    dataSend.append('fecha_nacimiento', arrays.fecha_nacimiento);
+    dataSend.append('fecha_nacimiento', arrays.fecha_nacimiento_anio+"-"+arrays.fecha_nacimiento_mes+"-"+arrays.fecha_nacimiento_dia);
     dataSend.append('estado_civil', arrays.estado_civil); //select 
     dataSend.append('sexo', arrays.sexo); //select
     dataSend.append('tipo_documento', arrays.tipo_documento); //select
@@ -256,7 +260,7 @@ export default class Formulario extends React.Component  {
         return (
           <ScrollView style={styles.container}>    
             <View  style={styles.containerview}>
-                <Text h4 >Registrar Paciente</Text>
+                <Text h3 h3Style={styles.h4s}>Formulario de Registrar de Paciente</Text>
                 <Text style={styles.text}>Los campos con el (*) son requeridos, los demas son opcionales</Text>
                   <Form 
                     ref="inputs"
@@ -265,7 +269,7 @@ export default class Formulario extends React.Component  {
                     value={ value }
                     onChange={ v => this.onChange(v) }
                   />
-                  <Button title="Registrar" onPress={ this.toass.bind(this) }/>
+                  <Button title="Registrar" buttonStyle={styles.btn_save}  onPress={ this.toass.bind(this) }/>
             </View>
           </ScrollView>
         );
@@ -279,8 +283,15 @@ const styles = StyleSheet.create({
     marginLeft:'5%',
     top:50,
   },
+  h4s:{
+    color:"#00a000",
+  },
   text:{
     color:"red",
+    marginBottom:50
+  },
+  btn_save:{
+    backgroundColor:'#00a000',
   },
   containerview:{
     marginBottom:500

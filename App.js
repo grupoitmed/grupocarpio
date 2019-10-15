@@ -51,7 +51,6 @@ export default class App extends React.Component {
       );
     }else{
       const logo = require('./assets/logo.png');
-      const { submitting }= this.state; 
       return (
         <View style={styles.container}>
             <View style={styles.containerImage}>
@@ -62,23 +61,21 @@ export default class App extends React.Component {
             </View>
           <Button
             title="Registrarse"
-            value={ submitting }
             buttonStyle={styles.button}
             onPress={this.mostrar_vista.bind(this)}
             titleStyle={styles.title_button}
           />
-          <Text>{submitting ? 'Cargando.....' : ''}</Text>
-          <Text h5 h5Style={styles.h4}>La información que ingrese en esta aplicación, es para uso exclusivo de GRUPO CARPIO, la cual no será usada para ningún otro objetivo mas que su expediente clínico</Text>
+          <Text h4 style={styles.h5S}>La información que ingrese en ésta aplicación es para uso exclusivo de GRUPO DERMATOLOGICO CARPIO, la cual no será usada para ningún otro objetivo más que su expediente clínico.</Text>
         </View>
       );
     }
   }
 }
 
-const styles = StyleSheet.create({ //alignItems: 'center',
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     justifyContent: 'center',
   },
   containerImage:{
@@ -88,7 +85,7 @@ const styles = StyleSheet.create({ //alignItems: 'center',
     backgroundColor:'red',
   },
   logo: {
-    width: 250,
+    width: 350,
     height: 250
   },
   button:{
@@ -100,10 +97,11 @@ const styles = StyleSheet.create({ //alignItems: 'center',
     alignItems: 'center',
     
   },
-  h5:{
+  h5S:{
     width:'90%',
-    flexDirection: 'row', 
-    justifyContent: 'space-between', 
-    alignItems: 'center', 
+    color:"#FFF",
+    marginLeft:'5%',
+    alignItems: 'center',
+    textAlign:'center',
   }
 });
