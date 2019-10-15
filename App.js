@@ -1,71 +1,109 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import { Image,Button,Text } from 'react-native-elements';
 import Formulario from "./screen/Formulario";
 
 export default class App extends React.Component {
     constructor(){
-      super()
-
+      super();
       this.state = {
-        login:true
+        login:false,
+        submitting:false
       };
     }
     mostrar_vista(){
       this.setState({
-        login:true
+        login:true,
+        submitting:true
       });
+    }
+    toass_cancel = ()=>{
+      Alert.alert(
+        'Cancelar',
+        '¿Esta seguro?',
+        [
+          {
+            text: 'No',
+            style: 'cancel',
+            onPress: () => {
+              console.log('No cancelado')
+            },
+          },
+          {text: 'Si', onPress: () =>{
+              this.setState({
+                login:false,
+                submitting:false
+              });
+            }
+          },
+        ],
+        {cancelable: false},
+      );
     }
   render(){
     if(this.state.login){
       return (
         <View style={styles.container}>
+          
             <Formulario />
+            <Button title="Cancelar" buttonStyle={styles.btn_cancelar} onPress={ this.toass_cancel.bind(this) } />
         </View>
       );
     }else{
       const logo = require('./assets/logo.png');
+      const { submitting }= this.state; 
       return (
         <View style={styles.container}>
-          <Image
-            source={logo}
-            style={styles.logo}
-          />
+            <View style={styles.containerImage}>
+                <Image
+                  source={logo}
+                  style={styles.logo}
+                />
+            </View>
           <Button
             title="Registrarse"
+            value={ submitting }
             buttonStyle={styles.button}
             onPress={this.mostrar_vista.bind(this)}
             titleStyle={styles.title_button}
           />
-          <Text h4 h4Style={styles.h4}>La información que ingrese en esta aplicación, es para uso exclusivo de GRUPO CARPIO, la cual no será usada para ningún otro objetivo mas que su expediente clínico</Text>
+          <Text>{submitting ? 'Cargando.....' : ''}</Text>
+          <Text h5 h5Style={styles.h4}>La información que ingrese en esta aplicación, es para uso exclusivo de GRUPO CARPIO, la cual no será usada para ningún otro objetivo mas que su expediente clínico</Text>
         </View>
       );
     }
   }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ //alignItems: 'center',
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  containerImage:{
+    alignItems: 'center'
+  },
+  btn_cancelar:{
+    backgroundColor:'red',
   },
   logo: {
-      width: 500,
-      height: 350
+    width: 250,
+    height: 250
   },
   button:{
-    justifyContent: 'center',
-    width:400,
-    height:200,
+    margin:20,
     borderRadius:20
   },
   title_button:{
-    fontSize:35
+    fontSize:35,
+    alignItems: 'center',
+    
   },
-  h4:{
-    width:700,
-    top:500,
-    justifyContent: 'center',
+  h5:{
+    width:'90%',
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
   }
 });

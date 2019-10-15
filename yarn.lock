@@ -4279,6 +4279,27 @@ react-native-ratings@^6.3.0:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
+react-native-restart@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.13.tgz#88003fd6b1cce9de5bafa2570ba4ef8ff1ea2937"
+  integrity sha512-p4rBiTliPiJEejA0IhExHuM7Ge6TuLpUAm98TbtkmiISWDRK2a/DeZ4Wno7bawcMr1Yb6O5eeTHPO0rUltRD/A==
+
+react-native-root-siblings@^3.0.0:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-root-siblings/-/react-native-root-siblings-3.2.3.tgz#df5a1cff3a3a1f433f57320e1cae719f1b15a3f2"
+  integrity sha512-wOCCtKJteaSIW3K++hzhkfdWRikTqjrG34DnhNDVSzKatuNQyFY1fPBD1YFT/3+kxOIUmNsJdiaPMao9QgoZMA==
+  dependencies:
+    prop-types "^15.6.2"
+    static-container "^1.0.0"
+
+react-native-root-toast@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-root-toast/-/react-native-root-toast-3.1.2.tgz#c8a1944f101c0768045202a276f46f9d710181a2"
+  integrity sha512-68OhAjRMwUsNeKC7GE5Sgems6dXY2VzuTsNe4hRbbN23V/bFeItnJAvgV4lib4hsCvO4KZjUtUqRY/nQd8s/7Q==
+  dependencies:
+    prop-types "^15.5.10"
+    react-native-root-siblings "^3.0.0"
+
 react-native-status-bar-height@^2.2.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.4.0.tgz#de8cee4bb733a196167210d2d0bc1fa10acba3e3"
@@ -4885,6 +4906,11 @@ stacktrace-parser@0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/stacktrace-parser/-/stacktrace-parser-0.1.4.tgz#01397922e5f62ecf30845522c95c4fe1d25e7d4e"
   integrity sha1-ATl5IuX2Ls8whFUiyVxP4dJefU4=
+
+static-container@^1.0.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/static-container/-/static-container-1.5.1.tgz#9d7a94e04dea864539a7b6a1304843ada740dc19"
+  integrity sha512-OFChfLKIvSzaMA3otS5CEabJTIzHFPhMxogIT+io4F207PXTvS6woFyjXIyXyqMIYAhryePGeFZYC6uLcG1lpA==
 
 static-extend@^0.1.1:
   version "0.1.2"

@@ -1,17 +1,16 @@
 import React from 'react';
-import { View, StyleSheet,ScrollView } from 'react-native';
-import { Text,Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, StyleSheet,ScrollView,Alert } from 'react-native';
+import { Text,Button,Input } from 'react-native-elements';
 import t from "tcomb-form-native";
 import { LoginStruct,LoginOptions } from "./componentes/Form";
+import Toast from 'react-native-root-toast';
 const Form = t.form.Form;
 
 export default class Formulario extends React.Component  {
   constructor(){
     super();
-
     this.state = {
-      values:{
+      value:{
         nombre: "",
         apellido: "",
         conocido: "",
@@ -50,12 +49,92 @@ export default class Formulario extends React.Component  {
       }
     };
   }
+  limpiar = () =>{
+    this.setState({value:{
+      nombre: "",
+      apellido: "",
+      conocido: "",
+      nacionalidad: "",
+      fecha_nacimiento: "",
+      sexo: "", //select
+      estado_civil: "", //select
+      tipo_documento: "", //select
+      num_documento: "",
+      direccion_domicilio: "",
+      telfono_celular: "",
+      correo_electronico: "",
+      telefono_domiciliar: "",
+      telefono_trabajo: "",
+      profecion: "", //select
+      medicamentio_que_utiliza: "", 
+      alergias: "", 
+      enfermedades_actuales: "", 
+      nombre_padre: "", 
+      telefono_padre: "", 
+      ocupacion_padre: "", 
+      nombre_madre: "", 
+      telefono_madre: "", 
+      ocupacion_madre: "",
+      dui_padre_o_madre: "", 
+      emergencia_llamar_a: "", 
+      emergencia_telefono: "", 
+      referido_por: "", 
+      medico_cabecera: "", 
+      reg_iva: "", 
+      seguro_medico: "", // select si || no 
+      aseguradora: "",
+      nu_polisa: "",
+      nu_certificado: "",
+      titular_seguro: ""
+    }});
+  }
 
-  onChange = values=>{
-    this.setState({values});
+  onChange = value=>{
+    this.setState({value});
+    
+  }
+  toass_cancel = ()=>{
+    Alert.alert(
+      'Cancelar',
+      '¿Esta seguro?',
+      [
+        {
+          text: 'No',
+          style: 'cancel',
+          onPress: () => {
+            console.log('No cancelado')
+          },
+        },
+        {text: 'Si', onPress: () =>{
+
+          }
+        },
+      ],
+      {cancelable: false},
+    );
+  }
+  toass = ()=>{
+    Alert.alert(
+      'Guardar Datos',
+      '¿Esta seguro?',
+      [
+        {
+          text: 'No',
+          style: 'cancel',
+          onPress: () => {
+            console.log('No cancelado')
+          },
+        },
+        {text: 'Si', onPress: () =>{
+          this.sendDatas();
+          }
+        },
+      ],
+      {cancelable: false},
+    );
   }
   sendDatas =() =>{
-    var arrays=this.state.values;
+    var arrays=this.state.value;
     var dataSend = new FormData();
     dataSend.append('nombre', arrays.nombre);
     dataSend.append('apellido', arrays.apellido);
@@ -98,25 +177,49 @@ export default class Formulario extends React.Component  {
   })
       //.then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
+        if(responseJson.status){
+          Alert.alert(
+            'Excelente',
+            'Datos almacenados correctamente.!',
+            [
+              {text: 'Ok', onPress: () =>{ 
+                  this.limpiar(); 
+                }
+              },
+            ],
+          );
+        }else{
+          Alert.alert(
+            'Ooops',
+            'Ha ocurrido un error, favor verificar los datos e intentarlo nuevamente.!',
+            [
+              {text: 'Ok', onPress: () =>{ 
+                  this.limpiar(); 
+                }
+              },
+            ],
+          );
+        }
       })
       .catch((error) => {
         console.error(error);
       });
+     
   }
     render (){
+        const { value } = this.state;
         return (
           <ScrollView style={styles.container}>    
             <View  style={styles.containerview}>
-                <Text>Formulario</Text>
+                <Text h4 >Registrar Paciente</Text>
                   <Form 
-                    ref="values"
+                    ref="inputs"
                     type={ LoginStruct }
                     options={ LoginOptions }
-                    value={  this.state.values }
+                    value={ value }
                     onChange={ v => this.onChange(v) }
                   />
-                  <Button title="Registrar" onPress={ this.sendDatas.bind(this) }/>
+                  <Button title="Registrar" onPress={ this.toass.bind(this) }/>
             </View>
           </ScrollView>
         );
@@ -127,9 +230,10 @@ export default class Formulario extends React.Component  {
 const styles = StyleSheet.create({
   container: {
     width:'90%',
-    top:50
+    marginLeft:'5%',
+    top:50,
   },
   containerview:{
-    marginBottom:50
+    marginBottom:500
   }
 });
