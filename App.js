@@ -50,7 +50,7 @@ export default class App extends React.Component {
         </View>
       );
     }else{
-      const logo = require('./assets/logo.png');
+      const logo = require('./assets/icon.png');
       return (
         <View style={styles.container}>
             <View style={styles.containerImage}>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor:'red',
   },
   logo: {
-    width: 350,
+    width: 250,
     height: 250
   },
   button:{
