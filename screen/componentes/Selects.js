@@ -9,12 +9,11 @@ export default (inputTemplates=local=>{
         <View style={styles.View}>
             <Text h4 h4Style={styles.text}>{ local.config.label }</Text>
             <RNPickerSelect
-                onValueChange={v => local.onChange(v)}
+                onValueChange = {v => local.onChange(v)}
                 items={ local.config.itemss }
-                value={ local.value }
                 style={ styles.input }
                 placeholder={{
-                    label: 'Seleccione una opcion',
+                    label: 'Por favor seleccione...',
                     value: 0,
                     color: 'gray',
                   }}
@@ -28,10 +27,10 @@ const styles = StyleSheet.create({
         marginBottom:40
     },
     text:{
-        color:"#FFF"
+        color:"#000"
     },
     input:{
-        color: '#FFF',
-        textDecorationColor: '#FFF',
+        color: '#000',
+        textDecorationColor: '#000',
     }
 });

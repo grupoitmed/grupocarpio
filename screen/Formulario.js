@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, StyleSheet,ScrollView,Alert } from 'react-native';
-import { Text,Button,Input } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import t from "tcomb-form-native";
-import { LoginStruct,LoginOptions } from "./componentes/Form";
-import Toast from 'react-native-root-toast';
+import { Text } from 'react-native-elements';
+import { LoginStruct,LoginOptions,MedicStruct,MedicOptions,NinoStruct,NinoOptions } from "./componentes/Form";
 const Form = t.form.Form;
 
 export default class Formulario extends React.Component  {
@@ -103,7 +103,6 @@ export default class Formulario extends React.Component  {
 
   onChange = value=>{
     this.setState({value});
-    
   }
   toass_cancel = ()=>{
     Alert.alert(
@@ -139,13 +138,6 @@ export default class Formulario extends React.Component  {
       Alert.alert(
         'Ooops',
         'El apellido es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
-      return false;
-    }else if(arrays.sexo==''){
-      Alert.alert(
-        'Ooops',
-        'El sexo es requerido.!',
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
@@ -225,7 +217,6 @@ export default class Formulario extends React.Component  {
   })
       //.then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson.status);
         if(responseJson.status){
           Alert.alert(
             'Excelente',
@@ -254,14 +245,12 @@ export default class Formulario extends React.Component  {
         console.error(error);
       });
      
-  }
+    }
     render (){
         const { value } = this.state;
         return (
           <ScrollView style={styles.container}>    
             <View  style={styles.containerview}>
-                <Text h3 h3Style={styles.h4s}>Formulario de Registrar de Paciente</Text>
-                <Text style={styles.text}>Los campos con el (*) son requeridos, los demas son opcionales</Text>
                   <Form 
                     ref="inputs"
                     type={ LoginStruct }
@@ -269,7 +258,26 @@ export default class Formulario extends React.Component  {
                     value={ value }
                     onChange={ v => this.onChange(v) }
                   />
+                  <Text h3 h3Style={styles.h4s}>AREA MEDICA</Text>
+                  <Form 
+                    ref="inputs"
+                    type={ MedicStruct }
+                    options={ MedicOptions }
+                    value={ value }
+                    onChange={ v => this.onChange(v) }
+                  />
+                  <Text h3 h3Style={styles.h4s}>SI EL PACIENTE ES MENOR DE EDAD POR FAVOR COMPLETAR ESTA SECCION</Text>
+                  <Form 
+                    ref="inputs"
+                    type={ NinoStruct }
+                    options={NinoOptions }
+                    value={ value }
+                    onChange={ v => this.onChange(v) }
+                  />
+                  <Text h3 h3Style={styles.h4s}>TU INFORMACION ES VALIOSA Y CONFIDENCIAL</Text>
                   <Button title="Registrar" buttonStyle={styles.btn_save}  onPress={ this.toass.bind(this) }/>
+                  <Text style={styles.text}>Desarrollado por GRUPO ITMED - www.grupoitmed.com</Text>
+                  <Text style={styles.text2}>Powered by MEDICPRO ®</Text>
             </View>
           </ScrollView>
         );
@@ -278,22 +286,38 @@ export default class Formulario extends React.Component  {
 
 
 const styles = StyleSheet.create({
+  text:{
+    color:"#FFF",
+    textAlign: 'center',
+    marginTop:50
+  },
+  text2:{
+    color:"#FFF",
+    textAlign: 'center',
+    marginTop:5
+  },
   container: {
     width:'90%',
     marginLeft:'5%',
     top:50,
-  },
-  h4s:{
-    color:"#00a000",
-  },
-  text:{
-    color:"red",
-    marginBottom:50
   },
   btn_save:{
     backgroundColor:'#00a000',
   },
   containerview:{
     marginBottom:500
+  },
+  h4s:{
+    textAlign:'center',
+    marginBottom:20,
+    color:"#00a000",
+    marginTop:50
+  },
+  h5S:{
+    width:'90%',
+    color:"#FFF",
+    marginLeft:'5%',
+    alignItems: 'center',
+    textAlign:'center',
   }
 });

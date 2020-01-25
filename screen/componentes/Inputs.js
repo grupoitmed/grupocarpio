@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
         marginBottom:40
     },
     text:{
-        color:"#FFF"
+        color:"#000"
     },
     input:{
-        color: '#FFF'
+        color: '#000'
     }
 });
