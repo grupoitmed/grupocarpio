@@ -53,9 +53,8 @@ export default class App extends React.Component {
                 style={styles.logo_2}
               />
             </View>
+             <Formulario /> 
             
-            
-            <Formulario />
             <Button title="Cancelar" buttonStyle={styles.btn_cancelar} onPress={ this.toass_cancel.bind(this) } />
         </View>
       );
@@ -85,6 +84,7 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+   
   container: {
     flex: 1,
     backgroundColor: '#FFF',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   btn_cancelar:{
-    backgroundColor:'red',
+    backgroundColor:'#08BC8F',
   },
   text:{
       color:"red",
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     marginTop:600
   },
   h4s:{
-    color:"#00a000",
+    color:"#08BC8F",
     marginTop:50,
     textAlign: 'center',
   },

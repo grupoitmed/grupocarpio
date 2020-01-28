@@ -101,9 +101,11 @@ export default class Formulario extends React.Component  {
     }});
   }
 
-  onChange = value=>{
+  onChange = value=>{ 
     this.setState({value});
-  }
+    //console.log(value);
+    console.log(this.state);
+  }  
   toass_cancel = ()=>{
     Alert.alert(
       'Cancelar',
@@ -125,8 +127,7 @@ export default class Formulario extends React.Component  {
     );
   }
   toass = ()=>{
-    var arrays=this.state.value;
-    console.log(arrays.nombre);
+    var arrays=this.state.value; 
     if(arrays.nombre==''){
       Alert.alert(
         'Ooops',
@@ -240,8 +241,7 @@ export default class Formulario extends React.Component  {
             ],
           );
         }
-      })
-      .catch((error) => {
+      }).catch((error) => {
         console.error(error);
       });
      
@@ -251,6 +251,7 @@ export default class Formulario extends React.Component  {
         return (
           <ScrollView style={styles.container}>    
             <View  style={styles.containerview}>
+                  
                   <Form 
                     ref="inputs"
                     type={ LoginStruct }
@@ -302,15 +303,15 @@ const styles = StyleSheet.create({
     top:50,
   },
   btn_save:{
-    backgroundColor:'#00a000',
+    backgroundColor:'#08BC8F',
   },
   containerview:{
-    marginBottom:500
+    marginBottom:500,
   },
   h4s:{
     textAlign:'center',
     marginBottom:20,
-    color:"#00a000",
+    color:"#08BC8F",
     marginTop:50
   },
   h5S:{

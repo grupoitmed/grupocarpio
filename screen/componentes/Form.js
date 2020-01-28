@@ -3,6 +3,7 @@ import t from 'tcomb-form-native';
 const Form = t.form.Form;
 import Inout from './Inputs'
 import Selects from './Selects'
+import Selects_fecha from './Selects_fecha'
 
 
 
@@ -11,8 +12,6 @@ export const LoginStruct = t.struct({
     apellido: t.maybe(t.String),
     conocido: t.maybe(t.String),
     fecha_nacimiento_dia: t.maybe(t.String),
-    fecha_nacimiento_mes: t.maybe(t.String),
-    fecha_nacimiento_anio: t.maybe(t.String),
     telfono_celular: t.maybe(t.Number),
     telefono_domiciliar: t.maybe(t.Number),
     correo_electronico: t.maybe(t.String),
@@ -64,22 +63,11 @@ export const LoginOptions = {
         apellido:{template:Inout, config:{ placeholder:"Ingrese su apellido",label:"Apellido *", secureTextEntry:false, password:false} },
         conocido:{template:Inout, config:{ placeholder:"¿Como le dicen?",label:"Nombre que le gusta utilizar",
         secureTextEntry:false, password:false} },
-        fecha_nacimiento_dia:{template:Selects, config:{  label:"Día de nacimiento *", 
-                itemss:   dias,                
-            } 
-        },
-        fecha_nacimiento_mes:{template:Selects, config:{  label:"Mes de nacimiento *", 
-                itemss:[{ color: 'gray', label: 'Enero',value: "01" },{ color: 'gray', label: 'Febrero',value: "02" },{ color: 'gray', label: 'Marzo',value: "03" },{ color: 'gray', label: 'Abril',value: "04" },{ color: 'gray', label: 'Mayo',value: "05" },{ color: 'gray', label: 'Junio',value: "06" },{ color: 'gray', label: 'Julio',value: "07" },{ color: 'gray', label: 'Agosto',value: "08" },{ color: 'gray', label: 'Septiembre',value: "09" },{ color: 'gray', label: 'Octubre',value: 10 },{ color: 'gray', label: 'Noviembre',value: 11 },{ color: 'gray', label: 'Diciembre',value: 12 }, ]
-            } 
-        },
-        fecha_nacimiento_anio:{template:Selects, config:{  label:"Año de nacimiento *", 
-                itemss:anios
-            } 
-        },
+        fecha_nacimiento_dia:{template:Selects_fecha, config:{label:"Día de nacimiento *",itemss:dias}},
         telfono_celular:{template:Inout, config:{ placeholder:"Ingrese su teléfono celular", label:"Teléfono celular", secureTextEntry:false, password:false} },
         telefono_domiciliar:{template:Inout, config:{ placeholder:"Ingrese su teléfono domiciliar", label:"Teléfono domiciliar",secureTextEntry:false, password:false} },
         correo_electronico:{template:Inout, config:{ placeholder:"Ingrese su correo electrónico",label:"Correo electrónico", secureTextEntry:false, password:false} },
-        nacionalidad:{template:Inout, config:{ placeholder:"Ingrese su nacionalidad",label:"Nacionalidad", secureTextEntry:false, password:false} },
+        nacionalidad:{template:Inout, config:{placeholder:"Ingrese su nacionalidad",label:"Nacionalidad", secureTextEntry:false, password:false}},
         tipo_documento:{template:Selects, 
             config:{
                 label:"Tipo de documento",

@@ -24,7 +24,7 @@ export default (inputTemplates=local=>{
 
 const styles = StyleSheet.create({
     View:{
-        marginBottom:40
+        marginBottom:40,
     },
     text:{
         color:"#000"

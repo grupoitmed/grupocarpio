@@ -21,12 +21,15 @@ export default (inputTemplates=local=>{
 
 const styles = StyleSheet.create({
     View:{
-        marginBottom:40
+        marginBottom:40,
+        width: '100%',
     },
     text:{
-        color:"#000"
+        color:"#000",
+        width: '100%',
     },
     input:{
-        color: '#000'
+        color: '#000',
+        width: '100%',
     }
 });
