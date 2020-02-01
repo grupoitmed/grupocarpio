@@ -101,12 +101,12 @@ const styles = StyleSheet.create({
       textAlign: 'center',
   },
   text_footer2:{
-    color:"#FFF",
+    color:"#08BC8F",
     textAlign: 'center',
     marginTop:5
   },
   text_footer:{
-    color:"#FFF",
+    color:"#08BC8F",
     textAlign: 'center',
     marginTop:50,
     marginTop:600
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   h5S:{
     width:'90%',
-    color:"#FFF",
+    color:"#08BC8F",
     marginLeft:'5%',
     alignItems: 'center',
     textAlign:'center',
