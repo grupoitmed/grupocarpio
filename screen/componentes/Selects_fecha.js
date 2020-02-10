@@ -4,19 +4,21 @@ import RNPickerSelect from 'react-native-picker-select';
 import { Text } from 'react-native-elements';
 
 export default (inputTemplates=local=>{
-    array ={dia:"",mes:"",year:""}
+    array = {dia:"",mes:"",year:""}
+    mandar_datos = (array)=>{
+        local.onChange(array);//local.onChange
+    } 
     onChanges = (value) =>{ 
-        this.array["dia"]=value;
-        //local.onChange(value,"fecha_nacimiento_mes");
-        console.log(this.array);
+        array["dia"]=value;
+        mandar_datos(array);
     }
     onChanges_m = (value) =>{ 
-        this.array["mes"]=value; 
-        //local.onChange(this.array); 
+        array["mes"]=value; 
+        mandar_datos(array);
     }
     onChanges_y = (value) =>{
-        this.array["year"]=value; 
-        //local.onChange(this.array); 
+        array["year"]=value; 
+        mandar_datos(array);
     } 
     var year = new Date().getFullYear();
     anios = []; 

@@ -6,7 +6,7 @@ import { Text } from 'react-native-elements';
 export default (inputTemplates=local=>{
     return (
         
-        <View style={styles.View}>
+        <View style={local.config.view}>
             <Text h4 h4Style={styles.text}>{ local.config.label }</Text>
             <RNPickerSelect
                 onValueChange = {v => local.onChange(v)}

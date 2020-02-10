@@ -103,8 +103,7 @@ export default class Formulario extends React.Component  {
 
   onChange = value=>{ 
     this.setState({value});
-    //console.log(value);
-    console.log(this.state);
+    console.log(this.state.value);
   }  
   toass_cancel = ()=>{
     Alert.alert(
@@ -212,7 +211,7 @@ export default class Formulario extends React.Component  {
     dataSend.append('nu_carnet', arrays.nu_carnet); 
     dataSend.append('nu_certificado', arrays.nu_certificado);
     dataSend.append('titular_seguro', arrays.titular_seguro); 
-    fetch('http://medicpro.cloud/grupocarpio/API/show_datos', {
+    fetch('https://medicpro.cloud/grupocarpio/API/show_datos', {
     method: 'POST',
     body: dataSend,
   })
@@ -251,14 +250,14 @@ export default class Formulario extends React.Component  {
         return (
           <ScrollView style={styles.container}>    
             <View  style={styles.containerview}>
-                  
+                     
                   <Form 
                     ref="inputs"
                     type={ LoginStruct }
                     options={ LoginOptions }
-                    value={ value }
+                    value={ value } //, 
                     onChange={ v => this.onChange(v) }
-                  />
+                  /> 
                   <Text h3 h3Style={styles.h4s}>AREA MEDICA</Text>
                   <Form 
                     ref="inputs"

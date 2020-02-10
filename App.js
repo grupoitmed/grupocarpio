@@ -45,16 +45,15 @@ export default class App extends React.Component {
     if(this.state.login){
       return (
         <View style={styles.container}>
-          <Text h3 h3Style={styles.h4s}>GRUPO DERMATOLOGICO CARPIO</Text>
+          <Text h3 h3Style={styles.h4s}>FORMULARIO DE REGISTRO</Text>
           <Text style={styles.text}>Los campos con el (*) son requeridos, los demás son opcionales</Text>
-            <View style={{alignItems: 'flex-end',marginTop:-50}}>
+            <View style={{alignItems: 'flex-end',marginTop:-70}}>
               <Image
                 source={logo}
                 style={styles.logo_2}
               />
             </View>
-             <Formulario /> 
-            
+             <Formulario />
             <Button title="Cancelar" buttonStyle={styles.btn_cancelar} onPress={ this.toass_cancel.bind(this) } />
         </View>
       );
@@ -117,16 +116,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   logo: {
-    width: 300,
-    height: 250
+    width: 450,
+    height: 325
   },
   logo_2:{
-    width: 150,
-    height: 100
+    width: 170,
+    height: 120
   },
   button:{
     margin:20,
-    borderRadius:20
+    borderRadius:20,
+    backgroundColor:"#08BC8F"
   },
   title_button:{
     fontSize:35,
