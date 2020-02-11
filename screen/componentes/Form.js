@@ -11,17 +11,9 @@ stylesheet.fieldset = {
     flexDirection: "row",
     width:'50%'
 };
+
 datos_profesion = [];
-  datos_profesion = async () => {
-    try {
-      const response = await axios.get(`https://medicpro.cloud/grupocarpio/API/show_datos_profesiones`);
-      console.log(response);
-         return response;
-    } catch (error) {
-      throw new Error(`Unable to get countries that use `);
-    }
-  }; 
-  datos_profesion = datos_profesion();
+    
 export const LoginStruct = t.struct({
     nombre:t.String,
     apellido:t.maybe(t.String),
@@ -131,7 +123,7 @@ export const LoginOptions = {
         
         seguro_medico:{ template:Inout, config:{ placeholder:"Tipo Seguro Médico",label:"Tipo Seguro Médico", secureTextEntry:false, password:false} },
         referido_por:{ template:Inout, config:{ placeholder:"Ingrese por quíen fue referido", label:"Referido por",secureTextEntry:false, password:false} },
-        profecion:{ template:Selects, 
+        profecion:{ template:Selects_fecha, 
             config:{
                 label:"Profesión",
                 view:{
