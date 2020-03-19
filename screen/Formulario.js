@@ -9,7 +9,7 @@ const Form = t.form.Form;
 export default class Formulario extends React.Component  {
   constructor(){
     super();
-    this.state = {
+    this.state = { 
       value:{
         nombre: "",
         apellido: "",
@@ -55,6 +55,28 @@ export default class Formulario extends React.Component  {
       }
     };
   }
+  /*
+  retrieveData = async () => {
+    try {
+        return value = await fetch("https://medicpro.cloud/grupocarpio/API/show_datos_profesiones", {
+            method: 'GET', 
+        })
+        .then((response) => response.json())
+        .then((resp) => { 
+            this.setState({profecion:{
+              profecion: resp.datos
+            }}); 
+        }).catch((error) => {
+            console.error(error);
+        }); 
+    } catch (error) {
+        console.log(error);
+    } 
+  };
+  
+  componentDidMount(){
+    this.retrieveData();
+  };*/
   limpiar = () =>{
     this.setState({value:{
       nombre: "",
@@ -102,8 +124,7 @@ export default class Formulario extends React.Component  {
   }
 
   onChange = value=>{ 
-    this.setState({value});
-    console.log(this.state.value);
+    this.setState({value}); 
   }  
   toass_cancel = ()=>{
     Alert.alert(
@@ -180,6 +201,7 @@ export default class Formulario extends React.Component  {
     dataSend.append('estado_civil', arrays.estado_civil); //select 
     dataSend.append('sexo', arrays.sexo); //select
     dataSend.append('tipo_documento', arrays.tipo_documento); //select
+    dataSend.append('referido_por', arrays.referido_por); //select
     dataSend.append('num_documento', arrays.num_documento);
     dataSend.append('direccion_domicilio', arrays.direccion_domicilio);
     dataSend.append('telfono_celular', arrays.telfono_celular);
@@ -246,7 +268,7 @@ export default class Formulario extends React.Component  {
      
     }
     render (){
-        const { value } = this.state;
+        const { value } = this.state; 
         return (
           <ScrollView style={styles.container}>    
             <View  style={styles.containerview}>
@@ -255,7 +277,7 @@ export default class Formulario extends React.Component  {
                     ref="inputs"
                     type={ LoginStruct }
                     options={ LoginOptions }
-                    value={ value } //, 
+                    value={ value } 
                     onChange={ v => this.onChange(v) }
                   /> 
                   <Text h3 h3Style={styles.h4s}>AREA MEDICA</Text>
