@@ -40,7 +40,7 @@ export default class App extends React.Component {
         {cancelable: false},
       );
     }
-  render(){
+  render(){ 
     const logo = require('./assets/logo_blanco.png');
     if(this.state.login){
       return (

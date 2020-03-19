@@ -16,7 +16,7 @@ export default (inputTemplates=local=>{
                     label: 'Por favor seleccione...',
                     value: 0,
                     color: 'gray',
-                  }}
+                }}
             />
         </View>
     )
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
         marginBottom:40,
     },
     text:{
-        color:"#000"
+        color:"#000",
+        textTransform: "uppercase" 
     },
     input:{
         color: '#000',

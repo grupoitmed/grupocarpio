@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     text:{
         color:"#000",
         width: '100%',
+        textTransform: "uppercase" 
     },
     input:{
         color: '#000',

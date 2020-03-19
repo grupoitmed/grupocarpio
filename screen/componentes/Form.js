@@ -40,7 +40,7 @@ export const NinoStruct = t.struct({
     ocupacion_madre:t.maybe(t.String),
 });
 dias = []; 
-for (let i = 1; i <= 31; i++) 
+for (let i = 1; i <= 31; i++)
 { 
     dias.push({ color: 'black', label: ""+i+"", value: i });
 }

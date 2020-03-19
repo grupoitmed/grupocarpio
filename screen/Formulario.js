@@ -83,9 +83,9 @@ export default class Formulario extends React.Component  {
       apellido: "",
       conocido: "",
       nacionalidad: "",
-      fecha_nacimiento_dia: "",
-      fecha_nacimiento_mes: "",
-      fecha_nacimiento_anio: "",
+      fecha_nacimiento_dia: 0,
+      fecha_nacimiento_mes: 0,
+      fecha_nacimiento_anio: 0,
       sexo: "", //select
       estado_civil: "", //select
       tipo_documento: "", //select
@@ -147,6 +147,7 @@ export default class Formulario extends React.Component  {
     );
   }
   toass = ()=>{
+    
     var arrays=this.state.value; 
     if(arrays.nombre==''){
       Alert.alert(
@@ -169,20 +170,92 @@ export default class Formulario extends React.Component  {
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
+    }else if(arrays.telfono_celular==''){
+      Alert.alert(
+        'Ooops',
+        'El teléfono celular es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.correo_electronico==''){
+      Alert.alert(
+        'Ooops',
+        'El correo electronico es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.nacionalidad==''){
+      Alert.alert(
+        'Ooops',
+        'La nacionalidad es requerida.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.direccion_domicilio==''){
+      Alert.alert(
+        'Ooops',
+        'La dirección es requerida.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.estado_civil==''){
+      Alert.alert(
+        'Ooops',
+        'El estado civil es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.referido_por==''){
+      Alert.alert(
+        'Ooops',
+        'Referido por es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.profecion==''){
+      Alert.alert(
+        'Ooops',
+        'La profesión por es requerida.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.lugar_trabajo==''){
+      Alert.alert(
+        'Ooops',
+        'El lugar de trabajo es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.telefono_trabajo==''){
+      Alert.alert(
+        'Ooops',
+        'El teléfono de la oficina es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.sexo==''){
+      Alert.alert(
+        'Ooops',
+        'El genero es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
     }else{
       Alert.alert(
         'Guardar Datos',
         '¿Esta seguro?',
         [
           {
-            text: 'No',
-            style: 'cancel',
+            text: 'Si',
             onPress: () => {
-              console.log('No cancelado')
+              this.sendDatas();
             },
           },
-          {text: 'Si', onPress: () =>{
-            this.sendDatas();
+          {
+            text: 'No', 
+            style: 'cancel',
+            onPress: () =>{
+              console.log('No cancelado')
             }
           },
         ],
