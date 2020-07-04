@@ -45,8 +45,7 @@ export default class App extends React.Component {
     if(this.state.login){
       return (
         <View style={styles.container}>
-          <Text h3 h3Style={styles.h4s}>FORMULARIO DE REGISTRO</Text>
-          <Text style={styles.text}>Los campos con el (*) son requeridos, los demás son opcionales</Text>
+          <Text h3 h3Style={styles.h4s}>FORMULARIO DE REGISTRO</Text> 
             <View style={{alignItems: 'flex-end',marginTop:-70}}>
               <Image
                 source={logo}

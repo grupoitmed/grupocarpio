@@ -12,6 +12,7 @@ export const LoginStruct = t.struct({
     fecha_nacimiento_dia:t.maybe(t.String),
     fecha_nacimiento_mes:t.maybe(t.String),
     fecha_nacimiento_anio:t.maybe(t.String),
+    sexo:t.maybe(t.String),
     telfono_celular:t.maybe(t.Number),
     telefono_domiciliar:t.maybe(t.Number),
     correo_electronico:t.maybe(t.String),
@@ -19,6 +20,7 @@ export const LoginStruct = t.struct({
     tipo_documento:t.maybe(t.String),
     num_documento:t.maybe(t.Number),
     direccion_domicilio:t.maybe(t.String), 
+    estado_civil:t.maybe(t.String), 
     seguro_medico:t.maybe(t.String),
     referido_por:t.maybe(t.String), 
     profecion:t.maybe(t.String), 
@@ -91,6 +93,18 @@ export const LoginOptions = {
                 itemss:anios
             } 
         },
+        sexo:{ template:Selects, 
+            config:{
+                label:"Seleccione Genero",
+                view:{
+                    width: '100%', 
+                    marginLeft: 5,
+                },
+                itemss:[
+                    { color: 'black', label: 'Masculino', value: 'M' }, { color: 'black', label: 'Femenino', value: 'F' }, { color: 'black', label: 'Transgenero', value: 'T' },
+                ],
+            } 
+        },
         telfono_celular:{ template:Inout, config:{ placeholder:"Ingrese su teléfono celular", label:"Teléfono celular", secureTextEntry:false, password:false} },
         telefono_domiciliar:{ template:Inout, config:{ placeholder:"Ingrese su teléfono domiciliar", label:"Teléfono domiciliar",secureTextEntry:false, password:false} },
         correo_electronico:{ template:Inout, config:{ placeholder:"Ingrese su correo electrónico",label:"Correo electrónico", secureTextEntry:false, password:false} },
@@ -108,6 +122,17 @@ export const LoginOptions = {
         },
         num_documento:{ template:Inout, config:{ placeholder:"Ingrese su número de documento",label:"Documento de  Identificación", secureTextEntry:false, password:false} },
         direccion_domicilio:{template:Inout, config:{ placeholder:"Ingrese su dirección domiciliar", label:"Dirección",secureTextEntry:false, password:false} },
+        estado_civil:{ template:Selects, 
+            config:{
+                label:"Estado Civil",
+                itemss:[
+                    { color: 'black', label: 'SOLTERO/A', value: 'SOLTERO/A' }, { color: 'black', label: 'CASADO/A', value: 'CASADO/A' }, { color: 'black', label: 'ACOMPAÑADO/A', value: 'ACOMPAÑADO/A' }, { color: 'black', label: 'VIUDO/A', value: 'VIUDO/A' }, { color: 'black', label: 'DIVORCIADO/A', value: 'DIVORCIADO/A' },
+                ],
+                view:{
+                    marginBottom:40,
+                }
+            } 
+        },
         
         seguro_medico:{ template:Inout, config:{ placeholder:"Tipo Seguro Médico",label:"Tipo Seguro Médico", secureTextEntry:false, password:false} },
         referido_por:{ template:Inout, config:{ placeholder:"Ingrese por quíen fue referido", label:"Referido por",secureTextEntry:false, password:false} },
