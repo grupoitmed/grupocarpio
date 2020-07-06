@@ -6,11 +6,17 @@ import { Text } from 'react-native-elements';
 import { LoginStruct,LoginOptions,MedicStruct,MedicOptions,NinoStruct,NinoOptions } from "./componentes/Form";
 const Form = t.form.Form;
 import moment from "moment";
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default class Formulario extends React.Component  {
   constructor(){
     super();
     this.state = {
+      showAlert: false,
+      showAlert_envio: false,
+      title_alert_error: "",
+      color_btn_alert_error: "",
+      msj_alert_error: "",
       edad:"",
       value:{
         nombre: "",
@@ -57,6 +63,26 @@ export default class Formulario extends React.Component  {
       }
     };
   }
+  showAlert_envio = () => {
+    this.setState({
+      showAlert_envio: true
+    });
+  };
+  hideAlert_envio = () => {
+    this.setState({
+      showAlert_envio: false
+    });
+  };
+  showAlert = () => {
+    this.setState({
+      showAlert: true
+    });
+  };
+  hideAlert = () => {
+    this.setState({
+      showAlert: false
+    });
+  };
   /*
   retrieveData = async () => {
     try {
@@ -150,9 +176,6 @@ export default class Formulario extends React.Component  {
     var days = a.diff(b, 'days');
     
     this.setState({edad:years});
-    console.log(years);
-    console.log(this.state.edad);
-  
   }
   toass_cancel = ()=>{
     Alert.alert(
@@ -163,7 +186,7 @@ export default class Formulario extends React.Component  {
           text: 'No',
           style: 'cancel',
           onPress: () => {
-            console.log('No cancelado')
+            //console.log('No cancelado')
           },
         },
         {text: 'Si', onPress: () =>{
@@ -176,163 +199,131 @@ export default class Formulario extends React.Component  {
   }
   toass = ()=>{
     var arrays=this.state.value;
-    var edad=this.state.edad;
-    console.log(edad);
-
+    var edad=this.state.edad; 
+    
+    this.setState({
+      title_alert_error: "Ooops.",
+      color_btn_alert_error: "#DD6B55"
+    });
     if(arrays.nombre==''){
-      Alert.alert(
-        'Ooops',
-        'El nombre es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El nombre es requerido."
+      });
+    this.showAlert();
+      
       return false;
     }else if(arrays.apellido==''){
-      Alert.alert(
-        'Ooops',
-        'El apellido es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      
+      this.setState({
+        msj_alert_error: "El apellido es requerido."
+      });
+      this.showAlert();
+     
       return false;
     }else if(arrays.fecha_nacimiento_dia=='' | arrays.fecha_nacimiento_mes=='' | arrays.fecha_nacimiento_anio==''){
-      Alert.alert(
-        'Ooops',
-        'La fecha de nacimiento es requerida.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "La fecha de nacimiento es requerida."
+      });
+      this.showAlert(); 
       return false;
     }else if(arrays.telfono_celular=='' & edad>17){
-      Alert.alert(
-        'Ooops',
-        'El teléfono celular es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El teléfono celular es requerido."
+      });
+      this.showAlert(); 
       return false;
     }else if(arrays.correo_electronico=='' & edad>17){
-      Alert.alert(
-        'Ooops',
-        'El correo electronico es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El correo electronico es requerido."
+      });
+      this.showAlert(); 
       return false;
     }else if(arrays.nacionalidad==''){
-      Alert.alert(
-        'Ooops',
-        'La nacionalidad es requerida.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "La nacionalidad es requerida."
+      });
+      this.showAlert();  
       return false;
-    }else if(arrays.direccion_domicilio==''){
-      Alert.alert(
-        'Ooops',
-        'La dirección es requerida.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+    }else if(arrays.direccion_domicilio==''){ 
+      this.setState({
+        msj_alert_error: "La dirección es requerida."
+      });
+      this.showAlert();  
       return false;
     }else if(arrays.estado_civil=='' & edad>17){
-      Alert.alert(
-        'Ooops',
-        'El estado civil es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El estado civil es requerido."
+      });
+      this.showAlert();
       return false;
     }else if(arrays.referido_por==''){
-      Alert.alert(
-        'Ooops',
-        'Referido por es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "Referido por es requerido."
+      });
+      this.showAlert();
       return false;
-    }else if(arrays.profecion==''){
-      Alert.alert(
-        'Ooops',
-        'La profesión por es requerida.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+    }else if(arrays.profecion=='' & edad>17){
+      this.setState({
+        msj_alert_error: "La profesión por es requerida."
+      });
+      this.showAlert(); 
       return false;
     }else if(arrays.lugar_trabajo=='' & edad>17){
-      Alert.alert(
-        'Ooops',
-        'El lugar de trabajo es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El lugar de trabajo es requerido."
+      });
+      this.showAlert();
       return false;
     }else if(arrays.telefono_trabajo=='' & edad>17){
-      Alert.alert(
-        'Ooops',
-        'El teléfono de la oficina es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El teléfono de la oficina es requerido."
+      });
+      this.showAlert(); 
       return false;
-    }else if(arrays.nombre_padre=='' & edad<18){
-      Alert.alert(
-        'Ooops',
-        'El nombre del padre es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+    }else if(arrays.nombre_padre=='' & edad<18){ 
+      this.setState({
+        msj_alert_error: "El nombre del padre es requerido."
+      });
+      this.showAlert(); 
       return false;
     }else if(arrays.telefono_padre=='' & edad<18){
-      Alert.alert(
-        'Ooops',
-        'El telefono del padre es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El telefono del padre es requerido."
+      });
+      this.showAlert();  
       return false;
     }else if(arrays.ocupacion_padre=='' & edad<18){
-      Alert.alert(
-        'Ooops',
-        'La ocupacion del padre es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "La ocupacion del padre es requerido."
+      });
+      this.showAlert();  
       return false;
     }else if(arrays.nombre_madre=='' & edad<18){
-      Alert.alert(
-        'Ooops',
-        'El nombre del madre es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El nombre del madre es requerido."
+      });
+      this.showAlert();
       return false;
     }else if(arrays.telefono_madre=='' & edad<18){
-      Alert.alert(
-        'Ooops',
-        'El telefono de la madre es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El telefono de la madre es requerido."
+      });
+      this.showAlert(); 
       return false;
     }else if(arrays.ocupacion_madre=='' & edad<18){
-      Alert.alert(
-        'Ooops',
-        'la ocupacion de la madre es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "La ocupacion de la madre es requerido."
+      });
+      this.showAlert();  
       return false;
     }else if(arrays.sexo==''){
-      Alert.alert(
-        'Ooops',
-        'El genero es requerido.!',
-        [{text: 'Ok', onPress: () =>{ } },],
-      );
+      this.setState({
+        msj_alert_error: "El genero es requerido."
+      });
+      this.showAlert();
       return false;
     }else{
-      Alert.alert(
-        'Guardar Datos',
-        '¿Esta seguro?',
-        [
-          {
-            text: 'Si',
-            onPress: () => {
-              this.sendDatas();
-            },
-          },
-          {
-            text: 'No', 
-            style: 'cancel',
-            onPress: () =>{
-              console.log('No cancelado')
-            }
-          },
-        ],
-        {cancelable: false},
-      );
+      this.showAlert_envio(); 
     }
   }
   sendDatas =() =>{
@@ -384,28 +375,20 @@ export default class Formulario extends React.Component  {
   })
       //.then((response) => response.json())
       .then((responseJson) => {
-        if(responseJson.status){
-          Alert.alert(
-            'Excelente',
-            'Datos almacenados correctamente.!',
-            [
-              {text: 'Ok', onPress: () =>{ 
-                  this.limpiar(); 
-                }
-              },
-            ],
-          );
+        if(responseJson.status){ 
+          this.setState({
+            title_alert_error: "Excelente.",
+            msj_alert_error: "Datos almacenados correctamente.",
+            color_btn_alert_error: "#0027FF"
+          });
+          this.showAlert(); 
         }else{
-          Alert.alert(
-            'Ooops',
-            'Ha ocurrido un error, favor verificar los datos e intentarlo nuevamente.!',
-            [
-              {text: 'Ok', onPress: () =>{ 
-                  this.limpiar(); 
-                }
-              },
-            ],
-          );
+          this.setState({
+            title_alert_error: "Ooops.",
+            msj_alert_error: responseJson.response,
+            color_btn_alert_error: "#DD6B55"
+          });
+          this.showAlert();
         }
       }).catch((error) => {
         console.error(error);
@@ -413,7 +396,12 @@ export default class Formulario extends React.Component  {
      
     }
     render (){
-        const { value } = this.state; 
+        const { value } = this.state;
+        const { showAlert } = this.state;
+        const { msj_alert_error } = this.state;
+        const { showAlert_envio } = this.state;
+        const { title_alert_error } = this.state;
+        const { color_btn_alert_error } = this.state; 
         return (
           <ScrollView style={styles.container}>    
             <View  style={styles.containerview}>
@@ -445,6 +433,54 @@ export default class Formulario extends React.Component  {
                   <Button title="Registrar" buttonStyle={styles.btn_save}  onPress={ this.toass.bind(this) }/>
                   <Text style={styles.text}>Desarrollado por GRUPO ITMED - www.grupoitmed.com</Text>
                   <Text style={styles.text2}>Powered by MEDICPRO ®</Text>
+ 
+                  <AwesomeAlert
+                      show={showAlert_envio}
+                      showProgress={false}
+                      title="Guardar Datos"
+                      titleStyle={styles.container_alert}
+                      messageStyle={styles.msj_alert}
+                      cancelButtonTextStyle={styles.btn_cancel_alert}
+                      confirmButtonTextStyle={styles.btn_cancel_alert}
+                      message="¿Esta seguro?"
+                      closeOnTouchOutside={true}
+                      closeOnHardwareBackPress={false}
+                      showCancelButton={true}
+                      showConfirmButton={true}
+                      cancelText="No, Cancelar"
+                      confirmText="Si, Guardar"
+                      cancelButtonColor="#DD6B55"
+                      confirmButtonColor="#0027FF"
+                      onCancelPressed={() => {
+                        this.hideAlert_envio();
+                      }}
+                      onConfirmPressed={() => {
+                        this.hideAlert_envio();
+                        this.sendDatas();
+                      }}
+                  />
+                  <AwesomeAlert
+                      show={showAlert}
+                      showProgress={false}
+                      title={title_alert_error}
+                      titleStyle={styles.container_alert}
+                      messageStyle={styles.msj_alert}
+                      confirmButtonTextStyle={styles.btn_cancel_alert}
+                      message={msj_alert_error}
+                      closeOnTouchOutside={true}
+                      closeOnHardwareBackPress={false}
+                      showCancelButton={false}
+                      showConfirmButton={true}
+                      cancelText="No, cancel"
+                      confirmText="Ok."
+                      confirmButtonColor={color_btn_alert_error}
+                      onCancelPressed={() => {
+                        this.hideAlert();
+                      }}
+                      onConfirmPressed={() => {
+                        this.hideAlert();
+                      }}
+                  />
             </View>
           </ScrollView>
         );
@@ -457,6 +493,15 @@ const styles = StyleSheet.create({
     color:"#FFF",
     textAlign: 'center',
     marginTop:50
+  },
+  container_alert:{
+    fontSize:40
+  },
+  btn_cancel_alert:{
+    fontSize:30
+  },
+  msj_alert:{
+    fontSize:30
   },
   text2:{
     color:"#FFF",
