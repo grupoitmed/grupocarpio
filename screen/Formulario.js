@@ -5,15 +5,17 @@ import t from "tcomb-form-native";
 import { Text } from 'react-native-elements';
 import { LoginStruct,LoginOptions,MedicStruct,MedicOptions,NinoStruct,NinoOptions } from "./componentes/Form";
 const Form = t.form.Form;
+import moment from "moment";
 
 export default class Formulario extends React.Component  {
   constructor(){
     super();
-    this.state = { 
+    this.state = {
+      edad:"",
       value:{
         nombre: "",
         apellido: "",
-        conocido: "",
+        conocido: "", 
         nacionalidad: "",
         fecha_nacimiento_dia: "",
         fecha_nacimiento_mes: "",
@@ -51,7 +53,7 @@ export default class Formulario extends React.Component  {
         nu_polisa: "",
         nu_carnet: "",
         nu_certificado: "",
-        titular_seguro: ""
+        titular_seguro: "" 
       }
     };
   }
@@ -78,8 +80,10 @@ export default class Formulario extends React.Component  {
     this.retrieveData();
   };*/
   limpiar = () =>{
-    this.setState({value:{
-      nombre: "",
+    this.setState({
+      edad:"",
+      value:{
+      nombre: "", 
       apellido: "",
       conocido: "",
       nacionalidad: "",
@@ -124,8 +128,32 @@ export default class Formulario extends React.Component  {
   }
 
   onChange = value=>{ 
-    this.setState({value}); 
-  }  
+    this.setState({value});
+    this.calculaEdad();
+  }
+  calculaEdad = () => {
+    
+    var arrays=this.state.value; 
+    var fecha_nac = arrays.fecha_nacimiento_anio+"-"+arrays.fecha_nacimiento_mes+"-"+arrays.fecha_nacimiento_dia;
+    //console.log(fecha_nac); 
+    var fecha = moment();
+    var a = moment(fecha);
+    var b = moment(fecha_nac);
+  
+    // Sacar años de diferencia
+    var years = a.diff(b, 'year');
+    b.add(years, 'years');
+    // Sacar mese de diferencia
+    var months = a.diff(b, 'months');
+    b.add(months, 'months');
+    // Sacar sias de diferencia
+    var days = a.diff(b, 'days');
+    
+    this.setState({edad:years});
+    console.log(years);
+    console.log(this.state.edad);
+  
+  }
   toass_cancel = ()=>{
     Alert.alert(
       'Cancelar',
@@ -147,8 +175,10 @@ export default class Formulario extends React.Component  {
     );
   }
   toass = ()=>{
-    
-    var arrays=this.state.value; 
+    var arrays=this.state.value;
+    var edad=this.state.edad;
+    console.log(edad);
+
     if(arrays.nombre==''){
       Alert.alert(
         'Ooops',
@@ -163,21 +193,21 @@ export default class Formulario extends React.Component  {
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
-    }else if(arrays.fecha_nacimiento==''){
+    }else if(arrays.fecha_nacimiento_dia=='' | arrays.fecha_nacimiento_mes=='' | arrays.fecha_nacimiento_anio==''){
       Alert.alert(
         'Ooops',
-        'LA fecha de nacimiento es requerida.!',
+        'La fecha de nacimiento es requerida.!',
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
-    }else if(arrays.telfono_celular==''){
+    }else if(arrays.telfono_celular=='' & edad>17){
       Alert.alert(
         'Ooops',
         'El teléfono celular es requerido.!',
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
-    }else if(arrays.correo_electronico==''){
+    }else if(arrays.correo_electronico=='' & edad>17){
       Alert.alert(
         'Ooops',
         'El correo electronico es requerido.!',
@@ -198,7 +228,7 @@ export default class Formulario extends React.Component  {
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
-    }else if(arrays.estado_civil==''){
+    }else if(arrays.estado_civil=='' & edad>17){
       Alert.alert(
         'Ooops',
         'El estado civil es requerido.!',
@@ -219,17 +249,59 @@ export default class Formulario extends React.Component  {
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
-    }else if(arrays.lugar_trabajo==''){
+    }else if(arrays.lugar_trabajo=='' & edad>17){
       Alert.alert(
         'Ooops',
         'El lugar de trabajo es requerido.!',
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
-    }else if(arrays.telefono_trabajo==''){
+    }else if(arrays.telefono_trabajo=='' & edad>17){
       Alert.alert(
         'Ooops',
         'El teléfono de la oficina es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.nombre_padre=='' & edad<18){
+      Alert.alert(
+        'Ooops',
+        'El nombre del padre es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.telefono_padre=='' & edad<18){
+      Alert.alert(
+        'Ooops',
+        'El telefono del padre es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.ocupacion_padre=='' & edad<18){
+      Alert.alert(
+        'Ooops',
+        'La ocupacion del padre es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.nombre_madre=='' & edad<18){
+      Alert.alert(
+        'Ooops',
+        'El nombre del madre es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.telefono_madre=='' & edad<18){
+      Alert.alert(
+        'Ooops',
+        'El telefono de la madre es requerido.!',
+        [{text: 'Ok', onPress: () =>{ } },],
+      );
+      return false;
+    }else if(arrays.ocupacion_madre=='' & edad<18){
+      Alert.alert(
+        'Ooops',
+        'la ocupacion de la madre es requerido.!',
         [{text: 'Ok', onPress: () =>{ } },],
       );
       return false;
