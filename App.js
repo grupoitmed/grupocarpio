@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import { Image,Button,Text } from 'react-native-elements';
 import Formulario from "./screen/Formulario";
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default class App extends React.Component {
     constructor(){
@@ -14,46 +15,67 @@ export default class App extends React.Component {
     mostrar_vista(){
       this.setState({
         login:true,
+        showAlert_envio: false,
         submitting:true
       });
     }
+    showAlert_envio = () => {
+      this.setState({
+        showAlert_envio: true
+      });
+    };
+    hideAlert_envio = () => {
+      this.setState({
+        showAlert_envio: false
+      });
+    };
     toass_cancel = ()=>{
-      Alert.alert(
-        'Cancelar',
-        '¿Esta seguro?',
-        [
-          {
-            text: 'No',
-            style: 'cancel',
-            onPress: () => {
-              console.log('No cancelado')
-            },
-          },
-          {text: 'Si', onPress: () =>{
-              this.setState({
-                login:false,
-                submitting:false
-              });
-            }
-          },
-        ],
-        {cancelable: false},
-      );
+      this.showAlert_envio();
+       
     }
   render(){ 
     const logo = require('./assets/logo_blanco.png');
+    const { showAlert_envio } = this.state;
     if(this.state.login){
       return (
         <View style={styles.container}>
           <Text h3 h3Style={styles.h4s}>FORMULARIO DE REGISTRO</Text> 
-            <View style={{alignItems: 'flex-end',marginTop:-70}}>
+            <View style={{alignItems: 'flex-end',marginTop:-60}}>
               <Image
                 source={logo}
                 style={styles.logo_2}
               />
             </View>
              <Formulario />
-            <Button title="Cancelar" buttonStyle={styles.btn_cancelar} onPress={ this.toass_cancel.bind(this) } />
+            <Button title="Cancelar"  titleStyle={styles.title_button} buttonStyle={styles.btn_cancelar} onPress={ this.toass_cancel.bind(this) } /> 
+            <AwesomeAlert
+              show={showAlert_envio}
+              showProgress={false}
+              title="Cancelar"
+              titleStyle={styles.container_alert}
+              messageStyle={styles.msj_alert}
+              cancelButtonTextStyle={styles.btn_cancel_alert}
+              confirmButtonTextStyle={styles.btn_cancel_alert}
+              message="¿Esta seguro?"
+              closeOnTouchOutside={true}
+              closeOnHardwareBackPress={false}
+              showCancelButton={true}
+              showConfirmButton={true}
+              cancelText="No. No Cancelar"
+              confirmText="Si. Cancelar"
+              cancelButtonColor="#DD6B55"
+              confirmButtonColor="#0027FF"
+              onCancelPressed={() => {
+                this.hideAlert_envio();
+              }}
+              onConfirmPressed={() => {
+                this.setState({
+                  login:false,
+                  submitting:false
+                });
+                this.hideAlert_envio();
+              }}
+          />
         </View>
       );
     }else{
@@ -88,6 +110,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     justifyContent: 'center',
   },
+  container_alert:{
+    fontSize:40
+  },
+  btn_cancel_alert:{
+    fontSize:30
+  },
+  msj_alert:{
+    fontSize:30
+  },
   containerImage:{
     alignItems: 'center'
   },
@@ -119,8 +150,8 @@ const styles = StyleSheet.create({
     height: 325
   },
   logo_2:{
-    width: 170,
-    height: 120
+    width: 210,
+    height: 150
   },
   button:{
     margin:20,
@@ -129,8 +160,7 @@ const styles = StyleSheet.create({
   },
   title_button:{
     fontSize:35,
-    alignItems: 'center',
-    
+    alignItems: 'center', 
   },
   h5S:{
     width:'90%',

@@ -82,29 +82,7 @@ export default class Formulario extends React.Component  {
     this.setState({
       showAlert: false
     });
-  };
-  /*
-  retrieveData = async () => {
-    try {
-        return value = await fetch("https://medicpro.cloud/grupocarpio/API/show_datos_profesiones", {
-            method: 'GET', 
-        })
-        .then((response) => response.json())
-        .then((resp) => { 
-            this.setState({profecion:{
-              profecion: resp.datos
-            }}); 
-        }).catch((error) => {
-            console.error(error);
-        }); 
-    } catch (error) {
-        console.log(error);
-    } 
-  };
-  
-  componentDidMount(){
-    this.retrieveData();
-  };*/
+  }; 
   limpiar = () =>{
     this.setState({
       edad:"",
@@ -202,7 +180,7 @@ export default class Formulario extends React.Component  {
     var edad=this.state.edad; 
     
     this.setState({
-      title_alert_error: "Ooops.",
+      title_alert_error: "Ooops!",
       color_btn_alert_error: "#DD6B55"
     });
     if(arrays.nombre==''){
@@ -384,7 +362,7 @@ export default class Formulario extends React.Component  {
           this.showAlert(); 
         }else{
           this.setState({
-            title_alert_error: "Ooops.",
+            title_alert_error: "Ooops!",
             msj_alert_error: responseJson.response,
             color_btn_alert_error: "#DD6B55"
           });
@@ -430,7 +408,7 @@ export default class Formulario extends React.Component  {
                     onChange={ v => this.onChange(v) }
                   />
                   <Text h3 h3Style={styles.h4s}>TU INFORMACION ES VALIOSA Y CONFIDENCIAL</Text>
-                  <Button title="Registrar" buttonStyle={styles.btn_save}  onPress={ this.toass.bind(this) }/>
+                  <Button title="Registrar" buttonStyle={styles.btn_save} titleStyle={styles.title_button}  onPress={ this.toass.bind(this) }/>
                   <Text style={styles.text}>Desarrollado por GRUPO ITMED - www.grupoitmed.com</Text>
                   <Text style={styles.text2}>Powered by MEDICPRO ®</Text>
  
@@ -472,7 +450,7 @@ export default class Formulario extends React.Component  {
                       showCancelButton={false}
                       showConfirmButton={true}
                       cancelText="No, cancel"
-                      confirmText="Ok."
+                      confirmText="Ok"
                       confirmButtonColor={color_btn_alert_error}
                       onCancelPressed={() => {
                         this.hideAlert();
@@ -493,6 +471,10 @@ const styles = StyleSheet.create({
     color:"#FFF",
     textAlign: 'center',
     marginTop:50
+  },
+  title_button:{
+    fontSize:35,
+    alignItems: 'center', 
   },
   container_alert:{
     fontSize:40

@@ -7,6 +7,7 @@ export default (inputTemplates=local=>{
         <View style={styles.View}>
             <Text h4 h4Style={styles.text} >{ local.config.label }</Text>
             <Input
+                keyboardType = {local.config.type_input} 
                 ref={ local.ref }
                 placeholder={local.config.placeholder} 
                 password={local.config.password} 
