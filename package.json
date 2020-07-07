@@ -8,8 +8,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "^38.0.0",
+    "expo": "^38.0.8",
     "expo-updates": "~0.2.8",
+    "fiction-expo-restart": "^1.0.4",
     "moment": "^2.27.0",
     "react": "16.11.0",
     "react-dom": "16.11.0",

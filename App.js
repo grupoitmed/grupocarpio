@@ -3,7 +3,6 @@ import { StyleSheet, View, Alert } from 'react-native';
 import { Image,Button,Text } from 'react-native-elements';
 import Formulario from "./screen/Formulario";
 import AwesomeAlert from 'react-native-awesome-alerts';
-
 export default class App extends React.Component {
     constructor(){
       super();

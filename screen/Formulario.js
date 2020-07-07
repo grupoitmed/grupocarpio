@@ -7,6 +7,7 @@ import { LoginStruct,LoginOptions,MedicStruct,MedicOptions,NinoStruct,NinoOption
 const Form = t.form.Form;
 import moment from "moment";
 import AwesomeAlert from 'react-native-awesome-alerts';
+import {Restart} from 'fiction-expo-restart'; 
 
 export default class Formulario extends React.Component  {
   constructor(){
@@ -154,27 +155,7 @@ export default class Formulario extends React.Component  {
     var days = a.diff(b, 'days');
     
     this.setState({edad:years});
-  }
-  toass_cancel = ()=>{
-    Alert.alert(
-      'Cancelar',
-      '¿Esta seguro?',
-      [
-        {
-          text: 'No',
-          style: 'cancel',
-          onPress: () => {
-            //console.log('No cancelado')
-          },
-        },
-        {text: 'Si', onPress: () =>{
-
-          }
-        },
-      ],
-      {cancelable: false},
-    );
-  }
+  } 
   toass = ()=>{
     var arrays=this.state.value;
     var edad=this.state.edad; 
@@ -359,7 +340,8 @@ export default class Formulario extends React.Component  {
             msj_alert_error: "Datos almacenados correctamente.",
             color_btn_alert_error: "#0027FF"
           });
-          this.showAlert(); 
+          this.showAlert();  
+          setTimeout(() => { Restart(); }, 3000);          
         }else{
           this.setState({
             title_alert_error: "Ooops!",
